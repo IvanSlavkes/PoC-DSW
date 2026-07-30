@@ -4,6 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-barra',
   imports: [],
   templateUrl: './barra.html',
-  styleUrl: './barra.scss',
+  styleUrl: './barra.css',
 })
 export class Barra {}
