@@ -1,0 +1,8 @@
+{
+  "tasks": [
+    { "id": 1, "nombre": "Preparar la presentación", "descripcion": "Armar las slides con la comparativa de frameworks", "estado": "pendiente", "fechaDesde": "2026-07-28T10:00:00.000Z", "fechaHasta": "2026-07-30T18:00:00.000Z" },
+    { "id": 2, "nombre": "Configurar json-server", "descripcion": "Levantar la API mockeada en el puerto 3000", "estado": "completada", "fechaDesde": "2026-07-27T09:30:00.000Z", "fechaHasta": "2026-07-27T12:00:00.000Z" },
+    { "id": 3, "nombre": "Implementar el CRUD", "descripcion": "Crear, editar y eliminar tareas desde Angular", "estado": "pendiente", "fechaDesde": "2026-07-29T14:15:00.000Z" },
+    { "id": 4, "nombre": "Probar el filtro por estado", "estado": "pendiente", "fechaDesde": "2026-07-29T16:00:00.000Z" }
+  ]
+}
