@@ -1,0 +1,42 @@
+<form [formGroup]="tareaForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-3 p-6 border rounded-2xl mx-4 my-3">
+  <h3 class="font-bold text-2xl">Nueva Tarea</h3>
+
+  <label class="flex flex-col">
+    Nombre
+    <input type="text" formControlName="nombre" class="border rounded p-2 w-full" />
+  </label>
+  @if (tareaForm.get('nombre')?.invalid && tareaForm.get('nombre')?.touched) {
+  <span class="text-red-500 text-sm">El nombre es obligatorio</span>
+  }
+
+  <label class="flex flex-col">
+    Descripción
+    <textarea formControlName="descripcion" class="border rounded p-2 w-full"></textarea>
+  </label>
+
+  <!-- <label class="flex flex-col">
+    Estado
+    <select formControlName="estado" class="border rounded p-2 w-full">
+      <option value="pendiente">Pendiente</option>
+      <option value="completada">Completada</option>
+    </select>
+  </label> -->
+
+  <label class="flex flex-col">
+    Fecha desde
+    <input type="date" formControlName="fechaDesde" class="border rounded p-2 w-full" />
+  </label>
+  @if (tareaForm.get('fechaDesde')?.invalid && tareaForm.get('fechaDesde')?.touched) {
+  <span class="text-red-500 text-sm">La fecha desde es obligatoria</span>
+  }
+
+  <label class="flex flex-col">
+    Fecha hasta (opcional)
+    <input type="date" formControlName="fechaHasta" class="border rounded p-2 w-full" />
+  </label>
+
+  <button type="submit" [disabled]="tareaForm.invalid"
+    class="bg-blue-600 text-white rounded p-2 mt-2 disabled:opacity-50">
+    Guardar
+  </button>
+</form>

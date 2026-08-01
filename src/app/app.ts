@@ -8,7 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Barra, FormularioTarea, ListaTareas, ReactiveFormsModule],
+  imports: [RouterOutlet, Barra, ListaTareas, ReactiveFormsModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

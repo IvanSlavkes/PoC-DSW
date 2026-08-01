@@ -1,26 +1,27 @@
 <div class="lista-tareas">
-  <h2 class="font-bold text-4xl px-6 py-4">Mis Tareas</h2>
+  <div class="flex justify-between items-center px-6 py-4">
+    <h2 class="font-bold text-4xl">Mis Tareas</h2>
+    <button (click)="abrirFormulario()" class="bg-blue-600 text-white rounded-xl px-4 py-2">
+      + Agregar Tarea
+    </button>
+  </div>
+
+  @if (mostrarFormulario()) {
+  <div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50" (click)="cerrarFormulario()">
+    <div class="bg-white rounded-2xl max-w-md w-full mx-4" (click)="$event.stopPropagation()">
+      <app-formulario-tarea (guardar)="onGuardar($event)" (cancelar)="cerrarFormulario()">
+      </app-formulario-tarea>
+    </div>
+  </div>
+  }
 
   @if (tareas().length === 0) {
   <p>No hay tareas cargadas todavía.</p>
-  }
-  @else {
-  <ul class="">
+  } @else {
+  <ul>
     @for (tarea of tareas(); track tarea.id) {
-    <li [class]="tarea.estado === 'pendiente' ? 'bg-yellow-500' : 'bg-green-600'"
-      class="align-middle p-5 mx-4 my-3 rounded-3xl">
-      <span class="flex justify-between items-center my-1">
-        <strong class="text-2xl"> {{tarea.nombre}}</strong>
-        <span class="capitalize w-auto">{{ tarea.estado }}</span>
-      </span>
-      @if (tarea.descripcion) {
-
-      <span class="flex mt-3">{{ tarea.descripcion }}</span>
-
-      } @else {
-      <span class="flex mt-3 italic">Sin Descripción</span>
-      }
-    </li>
+    <app-item-tarea [tarea]="tarea" (editar)="onEditar($event)" (eliminar)="onEliminar($event)">
+    </app-item-tarea>
     }
   </ul>
   }

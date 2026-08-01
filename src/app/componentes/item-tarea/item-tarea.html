@@ -1,1 +1,23 @@
-<p>item-tarea works!</p>
+<li [class]="tarea().estado === 'pendiente' ? 'bg-yellow-500' : 'bg-green-600'"
+  class="align-middle p-5 mx-4 my-3 rounded-3xl h-auto">
+  <span class="flex justify-between items-center my-1">
+    <strong class="text-2xl">{{ tarea().nombre }}</strong>
+    <span class="capitalize w-auto">{{ tarea().estado }}</span>
+    <span> {{ tarea().fechaDesde}}</span>
+  </span>
+
+  @if (tarea().descripcion) {
+  <span class="flex mt-3">{{ tarea().descripcion }}</span>
+  } @else {
+  <span class="flex mt-3 italic">Sin Descripción</span>
+  }
+
+  <div class="flex gap-2 mt-4">
+    <button (click)="onEditar()" class="bg-blue-600 text-white rounded px-3 py-1">
+      Editar
+    </button>
+    <button (click)="onEliminar()" class="bg-red-600 text-white rounded px-3 py-1">
+      Eliminar
+    </button>
+  </div>
+</li>
