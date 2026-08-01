@@ -1,25 +1,42 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, output, input } from '@angular/core';
 import { Tarea } from '../../services/tarea';
 import { Task } from '../../models/tarea.model';
+import { TaskSinId } from '../../models/tarea.model';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-formulario-tarea',
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './formulario-tarea.html',
   styleUrl: './formulario-tarea.css',
 })
-export class FormularioTarea implements OnInit{
-  private tareaService = inject(Tarea);
+export class FormularioTarea{
+  private fb = inject(FormBuilder);
 
-  tareas = signal<Task[]>([]);
+  guardar = output<TaskSinId>();
 
-  ngOnInit(): void {
-    this.cargarTareas();
-  }
+  tareaForm = this.fb.group({
+    nombre: ['', Validators.required],
+    descripcion: [''],
+    estado: ['pendiente' as 'pendiente' | 'completada', Validators.required],
+    fechaDesde: ['', Validators.required],
+    fechaHasta: [''],
+  });
 
-  cargarTareas(): void {
-    this.tareaService.getTasks().subscribe(data => {
-      this.tareas.set(data);
-    })
+  onSubmit(): void { // Función de ENVIAR y POSTEAR la nueva TAREA
+    if (this.tareaForm.valid) {
+      const valores = this.tareaForm.getRawValue();
+
+      const nuevaTarea: TaskSinId = {
+        nombre: valores.nombre!,
+        descripcion: valores.descripcion ?? undefined,
+        estado: valores.estado!,
+        fechaDesde: new Date(valores.fechaDesde!),
+        fechaHasta: valores.fechaHasta ? new Date(valores.fechaHasta) : undefined,
+      };
+
+      this.guardar.emit(nuevaTarea);
+      this.tareaForm.reset({ estado: 'pendiente' });
+    }
   }
 }

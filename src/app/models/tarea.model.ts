@@ -6,3 +6,5 @@ export interface Task{
   fechaDesde: Date;
   fechaHasta?: Date;
 }
+
+export type TaskSinId = Omit<Task, 'id'>;
