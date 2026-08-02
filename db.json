@@ -1,26 +1,28 @@
 {
   "tasks": [
     {
-      "id": "2",
-      "nombre": "Configurar json-server",
-      "descripcion": "Levantar la API mockeada en el puerto 3000",
+      "nombre": "HOLA AMORRRRRRRRRR",
+      "descripcion": "",
+      "estado": "pendiente",
+      "id": "4Vqql0yVC_U"
+    },
+    {
+      "nombre": "termine ",
+      "descripcion": "",
+      "estado": "pendiente",
+      "id": "zqznGJN2MJQ"
+    },
+    {
+      "nombre": "te amo muxooooooo",
+      "descripcion": "",
+      "estado": "pendiente",
+      "id": "IbxNjnS70rM"
+    },
+    {
+      "nombre": "quiero keke",
+      "descripcion": "que tetovichs",
       "estado": "completada",
-      "fechaDesde": "2026-07-27T09:30:00.000Z",
-      "fechaHasta": "2026-07-27T12:00:00.000Z"
-    },
-    {
-      "nombre": "DESEO QUEQUE",
-      "descripcion": "QMANDAN",
-      "estado": "pendiente",
-      "fechaDesde": "2026-08-01T00:00:00.000Z",
-      "id": "er7ykPMZFfA"
-    },
-    {
-      "nombre": "asdasda",
-      "descripcion": "sdasdasd",
-      "estado": "pendiente",
-      "fechaDesde": "2026-08-23T00:00:00.000Z",
-      "id": "hiJ0GiD0veE"
+      "id": "hEClHyF8pyg"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

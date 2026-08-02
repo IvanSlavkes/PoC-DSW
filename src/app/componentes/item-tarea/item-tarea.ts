@@ -11,6 +11,7 @@ export class ItemTarea {
 
   editar = output<Task>();
   eliminar = output<number>(); //Eliminar por ID
+  cambiarEstado = output<Task>();
 
   onEditar(): void{
     this.editar.emit(this.tarea())
@@ -18,5 +19,9 @@ export class ItemTarea {
 
   onEliminar(): void{
     this.eliminar.emit(this.tarea().id)
+  }
+
+  onCambiarEstado(): void{
+    this.cambiarEstado.emit(this.tarea())
   }
 }

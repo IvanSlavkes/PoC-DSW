@@ -3,8 +3,8 @@ export interface Task{
   nombre: string;
   descripcion?: string;
   estado: "pendiente" | "completada";
-  fechaDesde: Date;
-  fechaHasta?: Date;
+  // fechaDesde: Date;
+  // fechaHasta?: Date;
 }
 
 export type TaskSinId = Omit<Task, 'id'>;

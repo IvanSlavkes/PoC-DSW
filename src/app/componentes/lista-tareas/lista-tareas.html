@@ -6,23 +6,42 @@
     </button>
   </div>
 
+  <div class="flex gap-2 px-6 pb-2">
+    <button (click)="cambiarFiltro('todas')" [class]="filtro() === 'todas' ? 'bg-blue-600 text-white' : 'bg-gray-200'"
+      class="rounded-full px-4 py-2">
+      Todas
+    </button>
+    <button (click)="cambiarFiltro('pendiente')"
+      [class]="filtro() === 'pendiente' ? 'bg-blue-600 text-white' : 'bg-gray-200'" class="rounded-full px-4 py-2">
+      Pendientes
+    </button>
+    <button (click)="cambiarFiltro('completada')"
+      [class]="filtro() === 'completada' ? 'bg-blue-600 text-white' : 'bg-gray-200'" class="rounded-full px-4 py-2">
+      Completadas
+    </button>
+  </div>
+
   @if (mostrarFormulario()) {
   <div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50" (click)="cerrarFormulario()">
+    <!-- Tarjeta blanca del formulario; stopPropagation evita que un click adentro cierre el modal -->
     <div class="bg-white rounded-2xl max-w-md w-full mx-4" (click)="$event.stopPropagation()">
-      <app-formulario-tarea (guardar)="onGuardar($event)" (cancelar)="cerrarFormulario()">
+      <app-formulario-tarea [tareaAEditar]="tareaEnEdicion()" (guardar)="onGuardar($event)"
+        (cancelar)="cerrarFormulario()">
       </app-formulario-tarea>
     </div>
   </div>
   }
 
-  @if (tareas().length === 0) {
-  <p>No hay tareas cargadas todavía.</p>
+  @if (tareasFiltradas().length === 0) {
+  <p class="px-6">No hay tareas para mostrar.</p>
   } @else {
-  <ul>
-    @for (tarea of tareas(); track tarea.id) {
-    <app-item-tarea [tarea]="tarea" (editar)="onEditar($event)" (eliminar)="onEliminar($event)">
+  <ul class="grid grid-cols-2 px-3">
+    @for (tarea of tareasFiltradas(); track tarea.id) {
+    <app-item-tarea [tarea]="tarea" (editar)="onEditar($event)" (eliminar)="onEliminar($event)"
+      (cambiarEstado)="onCambiarEstado($event)">
     </app-item-tarea>
     }
   </ul>
   }
+
 </div>
