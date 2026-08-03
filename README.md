@@ -6,7 +6,9 @@ Compara Angular frente a React y Vue mediante la implementación de una misma mi
 
 ## Integrantes
 
-- [Completar con nombres del grupo]
+- Slavkes, Iván
+- Minetti, Antonella
+- Anastasini, Ignacio
 
 ## Stack
 
