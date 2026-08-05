@@ -5,8 +5,11 @@ import { Task } from '../models/tarea.model';
 
 @Service()
 export class Tarea {
-  private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000/tasks';
+  
+  private http = inject(HttpClient); 
+  
+  // URL del servidor local donde se realizan las peticiones (GET, POST, PUT, DELETE)
+  private apiUrl = 'http://localhost:3000/tasks'; 
 
   getTasks(): Observable<Task[]> {  // GET muchas tareas
     return this.http.get<Task[]>(this.apiUrl);

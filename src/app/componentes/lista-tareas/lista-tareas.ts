@@ -11,19 +11,19 @@ import { FormularioTarea } from '../formulario-tarea/formulario-tarea';
   styleUrl: './lista-tareas.css',
 })
 export class ListaTareas implements OnInit {
-  // Inyecta el service que habla con la API REST (json-server)
+  // Inyecta el service que habla con la API (json-server)
   private tareaService = inject(Tarea);
 
   // Lista completa de tareas, tal cual viene de la API
   tareas = signal<Task[]>([]);
 
-  // Filtro activo actualmente: todas / solo pendientes / solo completadas
+  // Filtro activo actualmente: todas / pendientes / completadas
   filtro = signal<'todas' | 'pendiente' | 'completada'>('todas');
 
-  // Guarda la tarea que se está editando (null = modo "crear nueva")
+  // Guarda la tarea que se está editando (NULL = crear nueva)
   tareaEnEdicion = signal<Task | null>(null);
 
-  // Controla si el modal del formulario está visible o no
+  // Controla si el formulario es visible o no
   mostrarFormulario = signal(false);
 
   // Signal derivada: se recalcula sola cada vez que cambian "tareas" o "filtro".
@@ -32,7 +32,7 @@ export class ListaTareas implements OnInit {
     const filtroActual = this.filtro();
     const listaCompleta = this.tareas();
 
-    // Si el filtro es "todas", no hace falta filtrar nada
+    // Si el filtro es TODAS, no hace falta filtrar nada
     if (filtroActual === 'todas') {
       return listaCompleta;
     }
@@ -41,36 +41,36 @@ export class ListaTareas implements OnInit {
     return listaCompleta.filter(tarea => tarea.estado === filtroActual);
   });
 
-  // Se ejecuta una vez el componente está listo, muestra las tareas que hay
+  // Se ejecuta apenas esta listo el componente y muestra TODAS las TAREAS
   ngOnInit(): void {
     this.cargarTareas();
   }
 
-  // Pide todas las tareas a la API y actualiza la signal "tareas"
+  // Pide todas las tareas a la API y actualiza la signal TAREAS
   cargarTareas(): void {
     this.tareaService.getTasks().subscribe(data => {
       this.tareas.set(data);
     });
   }
 
-  // Cambia el filtro activo (llamado desde los botones Todas/Pendientes/Completadas)
+  // Cambia el filtro activo (llamado desde los botones Todas / Pendientes / Completadas)
   cambiarFiltro(nuevoFiltro: 'todas' | 'pendiente' | 'completada'): void {
     this.filtro.set(nuevoFiltro);
   }
 
-  // Abre el modal en modo "crear": limpia cualquier edición previa y muestra el form vacío
+  // Abre el formulario en modo CREAR: limpia cualquier edición previa y muestra el form vacio
   abrirFormulario(): void {
     this.tareaEnEdicion.set(null);
     this.mostrarFormulario.set(true);
   }
 
-  // Cierra el modal y limpia el estado de edición
+  // Cierra el formulario y limpia el estado de edición
   cerrarFormulario(): void {
     this.mostrarFormulario.set(false);
     this.tareaEnEdicion.set(null);
   }
 
-  // Se ejecuta cuando el formulario emite el evento "guardar"
+  // Se ejecuta cuando el formulario emite el evento GUARDAR
   onGuardar(datos: TaskSinId): void {
     const enEdicion = this.tareaEnEdicion();
 
@@ -78,7 +78,7 @@ export class ListaTareas implements OnInit {
       // Hay una tarea en edición -> se actualiza esa tarea existente (PUT)
       this.tareaService.updateTask(enEdicion.id, { ...datos, id: enEdicion.id }).subscribe(() => {
         this.cerrarFormulario();
-        this.cargarTareas(); // recarga la lista para reflejar el cambio
+        this.cargarTareas(); // Recarga la lista para reflejar el cambio
       });
     } else {
       // No hay tarea en edición -> se crea una tarea nueva (POST)
