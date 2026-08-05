@@ -1,59 +1,89 @@
-# PocDEMO
+# PoC Angular — To-Do List
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.8.
+Demo técnica del grupo **Angular** para la Prueba de Concepto (PoC) del bloque temático **"FE Frameworks"** — Desarrollo de Software, UTN FRRo (2026).
 
-## Development server
+Compara Angular frente a React y Vue mediante la implementación de una misma mini-aplicación equivalente en cada tecnología. El desarrollo completo del análisis (cómo funciona, aspectos técnicos, ecosistema, ventajas/desventajas) está en el informe del bloque.
 
-To start a local development server, run:
+## Integrantes
+
+- Slavkes, Iván
+- Minetti, Antonella
+- Anastasini, Ignacio
+
+## Stack
+
+- **Angular 22** + **TypeScript**
+- **Angular CLI** (bundler y dev server)
+- **Standalone Components** (sin NgModules)
+- **Signals** (`signal`, `computed`, `effect`) — sistema reactivo de Angular
+- **Reactive Forms** — manejo de formularios
+- **json-server** — simula la API REST sin backend real
+
+## Alcance funcional
+
+Aplicación de gestión de tareas (to-do list):
+
+- CRUD completo de tareas (crear, ver, editar, eliminar)
+- Listado con filtro por estado (`pendiente` / `completada`)
+- Cambio rápido de estado (toggle pendiente ⇄ completada) sin pasar por el formulario
+- Consumo de una API REST mockeada (`GET /tasks`, `GET /tasks/:id`, `POST /tasks`, `PUT /tasks/:id`, `DELETE /tasks/:id`)
+
+Fuera de alcance (a propósito, para mantener la comparación acotada entre los 3 grupos): autenticación, roles, categorías/etiquetas y persistencia en base de datos real.
+
+## Estructura del proyecto
+
+```
+src/
+├── app/
+│   ├── models/        # Modelo de datos (Task, TaskSinId)
+│   ├── services/       # Service que consume la API REST (TareaService)
+│   └── components/
+│       ├── lista-tareas/       # Componente orquestador: filtro, modal, CRUD
+│       ├── item-tarea/         # Tarjeta individual de cada tarea
+│       └── formulario-tarea/   # Formulario reactivo de crear/editar
+└── db.json             # Datos semilla para la API mockeada (json-server)
+```
+
+## Arquitectura
+
+La app sigue el patrón **componente padre (orquestador) + componentes hijos reutilizables**:
+
+```
+ListaTareas (padre / orquestador — habla con la API)
+ │
+ ├── FormularioTarea (formulario dentro de un modal)
+ │
+ └── ItemTarea (una tarjeta por tarea, repetida con @for)
+```
+
+Ningún componente hijo llama a la API directamente: `ItemTarea` y `FormularioTarea` solo emiten eventos (`output`) que `ListaTareas` escucha y traduce en llamadas al service.
+
+## Cómo correrlo
+
+Se necesitan **dos terminales** corriendo en simultáneo:
 
 ```bash
+# Terminal 1 — instalar dependencias (primera vez)
+npm install
+
+# Terminal 1 — levantar la API mockeada
+npx json-server --watch db.json --port 3000
+
+# Terminal 2 — levantar la app Angular
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Abrir `http://localhost:4200` en el navegador. La API mockeada corre en `http://localhost:3000`.
 
-## Code scaffolding
+## Scripts disponibles
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+| Comando | Descripción |
+|---|---|
+| `ng serve` | Levanta el entorno de desarrollo |
+| `ng build` | Genera el build de producción |
+| `npx json-server --watch db.json --port 3000` | Levanta la API REST mockeada, persistiendo los cambios en `db.json` |
 
-```bash
-ng generate component component-name
-```
+## Documentación relacionada
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Informe completo de la PoC (bloque "FE Frameworks"): React, Vue y Angular — comparación conjunta y conclusiones.
+- Repositorio de la cátedra: [utnfrrodsw/poc](https://github.com/utnfrrodsw/poc)
