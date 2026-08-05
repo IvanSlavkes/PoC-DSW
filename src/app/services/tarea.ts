@@ -8,23 +8,23 @@ export class Tarea {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:3000/tasks';
 
-  getTasks(): Observable<Task[]> {
+  getTasks(): Observable<Task[]> {  // GET muchas tareas
     return this.http.get<Task[]>(this.apiUrl);
   }
 
-  getTask(id: number): Observable<Task> {
+  getTask(id: number): Observable<Task> { // GET una tarea mediante su ID
     return this.http.get<Task>(`${this.apiUrl}/${id}`);
   }
 
-  createTask(task: Task): Observable<Task> {
+  createTask(task: Task): Observable<Task> {  // CREATE una tarea del tipo Task (Tarea)
     return this.http.post<Task>(this.apiUrl, task);
   }
 
-  updateTask(id: number, task: Task): Observable<Task> {
+  updateTask(id: number, task: Task): Observable<Task> {  //UPDATE una tarea mediante su ID
     return this.http.put<Task>(`${this.apiUrl}/${id}`, task);
   }
 
-  deleteTask(id: number): Observable<void> {
+  deleteTask(id: number): Observable<void> {  //DELETE una tarea mediante su ID
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

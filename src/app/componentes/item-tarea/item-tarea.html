@@ -1,23 +1,31 @@
-<li [class]="tarea().estado === 'pendiente' ? 'bg-yellow-500' : 'bg-green-600'"
-  class="align-middle p-5 mx-4 my-3 rounded-3xl h-auto">
+<!-- Si el estado es pendiente: fondo AMARILLO, si no: fondo VERDE -->
+<li [class]="tarea().estado === 'pendiente' ? 'bg-yellow-500' : 'bg-green-600'" class="align-middle p-5 mx-4 my-3 rounded-3xl h-auto">
   <span class="flex justify-between items-center my-1">
-    <strong class="text-2xl">{{ tarea().nombre }}</strong>
-    <span class="font-bold capitalize w-auto">{{ tarea().estado }}</span>
+    <strong class="text-2xl">{{ tarea().nombre }}</strong> <!-- Muestra el NOMBRE -->
+    <span class="font-bold capitalize w-auto">{{ tarea().estado }}</span> <!-- Muestra el ESTADO -->
   </span>
 
+<!-- Si hay descripcion muestra su descripcion, si no tiene muestra 'Sin Descrpción' -->
   @if (tarea().descripcion) {
   <span class="flex mt-3">{{ tarea().descripcion }}</span>
   } @else {
   <span class="flex mt-3 italic">Sin Descripción</span>
   }
-
+<!-- BOTONES -->
   <div class="flex gap-2 mt-4">
-    <button (click)="onEditar()" class="bg-blue-600 text-white rounded px-3 py-1">
+
+    <!--Boton: EDITAR -->
+     <button (click)="onEditar()" class="bg-blue-600 text-white rounded px-3 py-1"> 
       Editar
     </button>
-    <button (click)="onEliminar()" class="bg-red-600 text-white rounded px-3 py-1">
+
+    <!--Boton: ELIMINAR -->
+    <button (click)="onEliminar()" class="bg-red-600 text-white rounded px-3 py-1"> 
       Eliminar
     </button>
+
+    <!--Boton: CAMBIAR ESTADO -->
+    <!-- Dependiendo del ESTADO pone un color u otro -->
     <button (click)="onCambiarEstado()" class="bg-green-800 text-white rounded px-3 py-1"  [class]="tarea().estado === 'completada' ? 'bg-yellow-500' : 'bg-green-600'">
       @if(tarea().estado === 'completada'){
         <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">

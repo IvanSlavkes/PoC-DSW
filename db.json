@@ -1,28 +1,28 @@
 {
   "tasks": [
     {
-      "nombre": "HOLA AMORRRRRRRRRR",
+      "nombre": "Hola profe",
       "descripcion": "",
       "estado": "pendiente",
-      "id": "4Vqql0yVC_U"
+      "id": "GgDfigPnVqk"
     },
     {
-      "nombre": "termine ",
+      "nombre": "esto es una tarea",
       "descripcion": "",
       "estado": "pendiente",
-      "id": "zqznGJN2MJQ"
+      "id": "2-QCKgGVGPI"
     },
     {
-      "nombre": "te amo muxooooooo",
+      "nombre": "aprobanos",
       "descripcion": "",
       "estado": "pendiente",
-      "id": "IbxNjnS70rM"
+      "id": "XKuBfR4mPuE"
     },
     {
-      "nombre": "quiero keke",
-      "descripcion": "que tetovichs",
+      "nombre": ":D",
+      "descripcion": "",
       "estado": "completada",
-      "id": "hEClHyF8pyg"
+      "id": "0bTsoCxjQEU"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

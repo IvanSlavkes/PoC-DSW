@@ -41,7 +41,7 @@ export class ListaTareas implements OnInit {
     return listaCompleta.filter(tarea => tarea.estado === filtroActual);
   });
 
-  // Se ejecuta automáticamente una sola vez, cuando el componente ya está listo
+  // Se ejecuta una vez el componente está listo, muestra las tareas que hay
   ngOnInit(): void {
     this.cargarTareas();
   }
