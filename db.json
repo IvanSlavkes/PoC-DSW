@@ -1,28 +1,10 @@
 {
   "tasks": [
     {
-      "nombre": "Hola profe",
-      "descripcion": "",
+      "nombre": "¡Hola mundo!",
+      "descripcion": "Hola profe",
       "estado": "pendiente",
       "id": "GgDfigPnVqk"
-    },
-    {
-      "nombre": "esto es una tarea",
-      "descripcion": "",
-      "estado": "pendiente",
-      "id": "2-QCKgGVGPI"
-    },
-    {
-      "nombre": "aprobanos",
-      "descripcion": "",
-      "estado": "pendiente",
-      "id": "XKuBfR4mPuE"
-    },
-    {
-      "nombre": ":D",
-      "descripcion": "",
-      "estado": "completada",
-      "id": "0bTsoCxjQEU"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

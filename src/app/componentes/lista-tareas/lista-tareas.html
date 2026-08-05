@@ -23,7 +23,6 @@
 
   @if (mostrarFormulario()) {
   <div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50" (click)="cerrarFormulario()">
-    <!-- Tarjeta blanca del formulario; stopPropagation evita que un click adentro cierre el modal -->
     <div class="bg-white rounded-2xl max-w-md w-full mx-4" (click)="$event.stopPropagation()">
       <app-formulario-tarea [tareaAEditar]="tareaEnEdicion()" (guardar)="onGuardar($event)"
         (cancelar)="cerrarFormulario()">
@@ -31,6 +30,22 @@
     </div>
   </div>
   }
+
+  <!-- @if (mostrarFormulario()) {
+  <div class="fixed inset-0 bg-black/50 ...">
+    <div class="bg-white ...">
+      @defer (on interaction) {
+      <app-formulario-tarea [tareaAEditar]="tareaEnEdicion()" (guardar)="onGuardar($event)"
+        (cancelar)="cerrarFormulario()">
+      </app-formulario-tarea>
+      } @placeholder {
+      <p class="p-6">Cargando formulario...</p>
+      } @loading (minimum 200ms) {
+      <p class="p-6">Un momento...</p>
+      }
+    </div>
+  </div>
+  } -->
 
   @if (tareasFiltradas().length === 0) {
   <p class="px-6">No hay tareas para mostrar.</p>
